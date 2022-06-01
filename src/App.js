@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, createContext } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import Create from "./Components/Create/Create";
+import Read from "./Components/Read/Read";
+
+
+export const AppContext = createContext(null);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [create, setCreateBool] = useState(true);
+    const [read, setReadBool] = useState(false);
+
+    return (
+        <AppContext.Provider value={{create, setCreateBool, read, setReadBool}}>
+            {create && <Create />}
+            {read && <Read/>}
+        </AppContext.Provider>
+    );
 }
 
 export default App;
