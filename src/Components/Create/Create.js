@@ -11,6 +11,7 @@ const Create = () => {
 
     return (
         <div className="w-100">
+            <div className="mt-3 mb-3 w-75 mx-auto"><h3>Create Page</h3></div>
             <form className="w-50 mx-auto mt-4 " id="myForm">
                 <Name/>
                 <Password/>

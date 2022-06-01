@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { AppContext } from "../../App";
+import { AppContext } from "../../../App";
 
-const Button = () => {
-    const { setReadBool, setCreateBool, create, read } = useContext(AppContext);
+const Button = ({id}) => {
+    const { setReadBool, setCreateBool, setEditBool } = useContext(AppContext);
 
     return (
         <>
@@ -22,14 +22,16 @@ const Button = () => {
                     
 
                     axios
-                        .post(
-                            "https://62946170a7203b3ed067cb93.mockapi.io/userdata",
+                        .put(
+                            "https://62946170a7203b3ed067cb93.mockapi.io/userdata/"+id,
                             object
                         )
                         .then((res) => {
                             
-                            setCreateBool(!create);
-                            setReadBool(!read);
+                            setCreateBool(false);
+                            setReadBool(true);
+                            setEditBool(false)
+
                         })
                         .catch((err) => console.log(err));
                 }}
@@ -40,8 +42,9 @@ const Button = () => {
             <button
                 className="btn btn-danger float-end me-3 mt-2"
                 onClick={() => {
-                    setCreateBool(!create);
-                    setReadBool(!read);
+                    setCreateBool(false);
+                            setReadBool(true);
+                            setEditBool(false)
                 }}
             >
                 Cancel
